@@ -9,6 +9,7 @@ import { Book } from '../shared/book';
 export class DashboardComponent implements OnInit {
 
   books: Book[] = [];
+  ixxx = 5;
 
   constructor() {
     this.books = [
