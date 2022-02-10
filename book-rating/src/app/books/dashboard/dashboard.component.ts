@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from '../shared/book';
+import { BookRatingService } from '../shared/book-rating.service';
 
 @Component({
   selector: 'br-dashboard',
@@ -10,7 +11,7 @@ export class DashboardComponent implements OnInit {
 
   books: Book[] = [];
 
-  constructor() {
+  constructor(private rs: BookRatingService) {
     this.books = [
       {
         isbn: '123',
@@ -30,11 +31,30 @@ export class DashboardComponent implements OnInit {
   }
 
   doRateUp(book: Book) {
-    console.log('UP', book);
+    const ratedBook = this.rs.rateUp(book);
+    this.updateList(ratedBook);
   }
 
   doRateDown(book: Book) {
-    console.log('DOWN', book);
+    const ratedBook = this.rs.rateDown(book);
+    this.updateList(ratedBook);
+  }
+
+  private updateList(ratedBook: Book) {
+    // [1,2,3,4,5].map(e => e * 10); // [10,20,30,40,50]
+    // [1,2,3,4,5].filter(e => e % 2 === 0) // [2,4]
+
+    /*this.books.map(b => {
+      if (b.isbn === ratedBook.isbn) {
+        return ratedBook;
+      } else {
+        return b;
+      }
+    })*/
+
+    this.books = this.books
+      .map(b => (b.isbn === ratedBook.isbn) ? ratedBook : b);
+
   }
 
   ngOnInit(): void {
