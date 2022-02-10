@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { BookComponent } from '../book/book.component';
 
 import { DashboardComponent } from './dashboard.component';
 
