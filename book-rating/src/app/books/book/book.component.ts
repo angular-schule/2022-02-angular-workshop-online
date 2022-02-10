@@ -12,7 +12,9 @@ export class BookComponent implements OnInit {
   @Output() rateUp = new EventEmitter<Book>();
   @Output() rateDown = new EventEmitter<Book>();
 
-  constructor() {}
+  constructor() {
+    console.log('BC');
+  }
 
   ngOnInit(): void {
   }

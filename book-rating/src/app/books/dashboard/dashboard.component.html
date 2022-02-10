@@ -1,7 +1,7 @@
 <br-book
   (rateUp)="doRateUp($event)"
   (rateDown)="doRateDown(b)"
-  *ngFor="let b of books"
+  *ngFor="let b of books; trackBy: trackBook"
   [book]="b"></br-book>
 
 <p>Anzahl Bücher: {{ books.length }}</p>
