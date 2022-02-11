@@ -1,3 +1,4 @@
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
@@ -25,7 +26,8 @@ describe('DashboardComponent', () => {
           provide: BookRatingService,
           useValue: ratingMock
         }
-      ]
+      ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   });
