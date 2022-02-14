@@ -1,9 +1,15 @@
-import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Component, Input, NO_ERRORS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Book } from '../shared/book';
 import { BookRatingService } from '../shared/book-rating.service';
 
 import { DashboardComponent } from './dashboard.component';
+
+
+/*@Component({ selector: 'br-book', template: '' })
+class DummyComponent {
+  @Input() book?: Book;
+}*/
 
 describe('DashboardComponent', () => {
   let component: DashboardComponent;
