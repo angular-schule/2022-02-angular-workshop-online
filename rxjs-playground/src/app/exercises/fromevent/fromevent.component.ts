@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { fromEvent, map, startWith, debounceTime } from 'rxjs';
+import { fromEvent, map, startWith, debounceTime, debounce, timer } from 'rxjs';
 
 interface ResizeEventType {
   currentTarget: Window;
@@ -25,8 +25,16 @@ export class FromeventComponent {
 
     /******************************/
 
-    fromEvent<ResizeEventType>(window, 'resize')
-      .subscribe(e => console.log(e));
+    const width$ = fromEvent<ResizeEventType>(window, 'resize').pipe(
+      debounceTime(1000), // debounce(() => timer(1000)),
+      map(e => e.currentTarget.innerWidth),
+      startWith(window.innerWidth)
+    );
+
+
+    width$.subscribe(width => {
+      this.currentWidth = width;
+    });
 
     /******************************/
   }
