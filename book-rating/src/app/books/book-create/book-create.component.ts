@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Book } from '../shared/book';
@@ -7,7 +7,8 @@ import { BookStoreService } from '../shared/book-store.service';
 @Component({
   selector: 'br-book-create',
   templateUrl: './book-create.component.html',
-  styleUrls: ['./book-create.component.scss']
+  styleUrls: ['./book-create.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class BookCreateComponent implements OnInit {
 
@@ -48,6 +49,18 @@ export class BookCreateComponent implements OnInit {
       this.router.navigate(['..', b.isbn], { relativeTo: this.route });
     });
 
+  }
+
+  isInvalid(controlName: string): boolean {
+    const control = this.bookForm.get(controlName);
+    return !!control && control.invalid && control.touched;
+  }
+
+  hasError(controlName: string, errorCode: string): boolean {
+    /*const error = this.bookForm.get(controlName)?.getError(errorCode);
+    return !!error;*/
+    const control = this.bookForm.get(controlName);
+    return !!control && control.hasError(errorCode) && control.touched;
   }
 
 }
