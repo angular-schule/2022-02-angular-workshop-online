@@ -1,4 +1,4 @@
-<form [formGroup]="bookForm">
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
 
   <div class="form-group">
     <label>ISBN</label>
@@ -24,6 +24,10 @@
     <label>Preis</label>
     <input class="form-control" type="number" formControlName="price">
   </div>
+
+  <!-- [disabled]="bookForm.invalid" -->
+  <button class="btn btn-green" type="submit">Abschicken</button>
+
 </form>
 
 <pre>{{ bookForm.value | json }}</pre>
