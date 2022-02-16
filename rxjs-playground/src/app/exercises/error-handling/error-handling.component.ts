@@ -32,8 +32,8 @@ export class ErrorHandlingComponent {
         // throw 'GEWORFENER FEHLER!';
 
         // ersetzen
-        // return of('Nichts passiert!');
-        return ['Nothing happened!'];
+        return of('Nichts passiert!');
+        // return ['Nothing happened!'];
 
         // ignorieren
         // return EMPTY;
