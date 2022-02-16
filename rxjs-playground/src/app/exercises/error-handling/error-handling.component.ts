@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ReplaySubject, throwError, of, EMPTY, retry, catchError } from 'rxjs';
+import { ReplaySubject, throwError, of, EMPTY, retry, catchError, from } from 'rxjs';
 
 import { ExerciseService } from '../exercise.service';
 
@@ -23,13 +23,21 @@ export class ErrorHandlingComponent {
    */
 
   start() {
+
     this.es.randomError().pipe(
+      catchError(err => {
 
-      /******************************/
+        // weiterwerfen
+        // return throwError(() => 'FEHELR!!!!');
+        // throw 'GEWORFENER FEHLER!';
 
-      
-      /******************************/
+        // ersetzen
+        // return of('Nichts passiert!');
+        return ['Nothing happened!'];
 
+        // ignorieren
+        // return EMPTY;
+      })
     ).subscribe({
       next: e => this.logStream$.next(e),
       error: err => this.logStream$.next('❌ ERROR: ' + err)
